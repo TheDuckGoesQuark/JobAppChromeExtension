@@ -1,7 +1,9 @@
-import { defineConfig } from 'vite'
+import {defineConfig} from 'vite'
 import preact from '@preact/preset-vite'
+import {crx, ManifestV3Export} from "@crxjs/vite-plugin";
+import manifest from "./manifest.json"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [preact()],
+    plugins: [preact(), crx({manifest: (manifest as ManifestV3Export) })],
 })

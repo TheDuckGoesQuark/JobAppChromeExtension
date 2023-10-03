@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Job Application Chrome Extension",
+  "description": "A quick way to fill out job application fields.",
+  "version": "0.0.1",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": ""
+  },
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  }
+}

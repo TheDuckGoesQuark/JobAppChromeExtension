@@ -12,7 +12,9 @@
     "preact": "^10.16.0"
   },
   "devDependencies": {
+    "@crxjs/vite-plugin": "^1.0.14",
     "@preact/preset-vite": "^2.5.0",
+    "@types/chrome": "^0.0.246",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
