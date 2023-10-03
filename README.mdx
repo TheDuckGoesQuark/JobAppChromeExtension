@@ -1,0 +1,16 @@
+# JobAppChromeExtension
+
+## Client
+
+Client contains the chrome extension source.
+
+## Server
+
+Server contains the backend python service
+
+## How it's made
+1. Followed the instructions from [here](https://dev.to/rgolawski/building-chrome-extension-with-vite-47bh) to initialise the chrome extension.
+2. Moved the resulting files into the `client` folder so everything reloated to this project can live in the same rep
+3. Investigated using NX to manage the mono repo environment, but the config quickly became more cumbersome than it's worth
+4. Started designing the initial architecture. Prioritising POC rather than scale since this is mostly for fun, we're keeping it simple with just one server handling requests.
+5. Based on [this](https://www.linkedin.com/pulse/build-qa-bot-over-private-data-openai-langchain-leo-wang/), we should be able to build something where each user has their own document that we add to over time.
