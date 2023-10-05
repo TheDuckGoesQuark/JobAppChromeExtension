@@ -1,16 +1,23 @@
 {
   "manifest_version": 3,
   "name": "Job Application Chrome Extension",
+  "short_name": "JAE",
   "description": "A quick way to fill out job application fields.",
   "version": "0.0.1",
+  "author": "github.com/TheDuckGoesQuark",
   "action": {
-    "default_popup": "index.html",
-    "default_title": ""
+    "default_title": "JAE",
+    "default_popup": "index.html"
   },
   "background": {
-    "service_worker": "./src/background/background.ts",
+    "service_worker": "./src/pages/background/background.ts",
     "type": "module"
   },
+  "permissions": [
+    "identity",
+    "activeTab",
+    "scripting"
+  ],
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvZRvcOyjJS4F3JA9sXBy05T8rseQ2JjrqaADx0wlpOXFG6ArrNAlRSVzG1foDBoNCr/klh2ytT2TJFc6ROE5wFw0PVGm761QLVveU7fR2Npg97yNsbipoCrwmQHj4o69NY6JPFJYOuCadkHAJV6q9QuHCPAg9lCnUIJpE/6dcF02PyhPo4qsOM4dwooY640ixOissTN0BgOmFQp0Rghm1NE2oWE4ywEB71CfVmGM95OwP4OZDYp3SBpUzIX5eII+kxDBsjIlJPGgkQr74u2cSyjTEcGI+fQ1YkDCmibimwq/6XBHZVfuliusykATp6repJWqIXb7/A2YM18YSn1scwIDAQAB",
   "oauth2": {
     "client_id": "1029116563390-ifde5d3c671gbuimic2ue3ri4uit1uam.apps.googleusercontent.com",
@@ -19,8 +26,5 @@
       "email",
       "openid"
     ]
-  },
-  "permissions": [
-    "identity"
-  ]
+  }
 }

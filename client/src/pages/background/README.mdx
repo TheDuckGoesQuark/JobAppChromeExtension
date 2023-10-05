@@ -1,0 +1,11 @@
+# background
+
+* Background holds the main logic.
+* Persistent background pages always run.
+* Event pages only open when the extension is opened and closed
+
+## Design
+
+Background script acts like the server to the content scripts.
+E.g. content script will send message to background like `{type: GetAnswer, question: questionString}`
+Background script then would handle the relevant API calls to external services, before responding to the content script with some result (if any)
