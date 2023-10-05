@@ -9,7 +9,6 @@ const getProfileUserInfo = () => new Promise<UserInfo | undefined>((resolve) =>
     chrome.identity.getProfileUserInfo({accountStatus: chrome.identity.AccountStatus.ANY}, resolve))
 
 const onFocusHandler: MessageTypeHandler = async (message) => {
-    console.log({message})
     const onFocusMessage = message as FocusEventMessage
     const authToken = await getAuthToken();
     const profileUserInfo = await getProfileUserInfo();
