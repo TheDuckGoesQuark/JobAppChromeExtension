@@ -1,6 +1,7 @@
 enum MessageType {
     logIn,
-    focusEvent
+    focusEvent,
+    questionAnswered,
 }
 
 type LogInMessage = {
@@ -13,13 +14,21 @@ type FocusEventMessage = {
     inputElement: Element
 }
 
+type QuestionAnsweredMessage = {
+    type: MessageType.questionAnswered
+    question: string,
+    answer: string,
+}
+
 type Message = LogInMessage
     | FocusEventMessage
+    | QuestionAnsweredMessage
 
 export type {
     Message,
     FocusEventMessage,
     LogInMessage,
+    QuestionAnsweredMessage
 }
 
 export {

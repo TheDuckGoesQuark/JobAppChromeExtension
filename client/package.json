@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mantine/core": "^7.1.2",
+    "@mantine/hooks": "^7.1.2",
     "preact": "^10.16.0"
   },
   "devDependencies": {

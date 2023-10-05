@@ -1,5 +1,7 @@
 import {sendMessageToBackgroundScript} from "../shared/runtime.ts";
 import {MessageType} from "../shared/messages.ts";
+import {render} from "preact";
+import {App} from "../popup/app.tsx";
 
 const INPUTS = ["input", "textarea"];
 
@@ -16,7 +18,11 @@ const focusInputHandler = async (e: FocusEvent) => {
         return;
     }
 
-    await sendMessageToBackgroundScript({type: MessageType.focusEvent, inputElement: activeElement})
+    const res = await sendMessageToBackgroundScript({type: MessageType.focusEvent, inputElement: activeElement})
+    if (res.type !== MessageType.questionAnswered) {
+        return;
+    }
+    render(<App title={res.question} />, activeElement);
 }
 
 export default focusInputHandler;
