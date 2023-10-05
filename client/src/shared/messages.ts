@@ -1,12 +1,7 @@
 enum MessageType {
-    logIn,
+    unknown,
     focusEvent,
     questionAnswered,
-}
-
-type LogInMessage = {
-    type: MessageType.logIn
-    userAccountInfo: chrome.identity.AccountInfo
 }
 
 type FocusEventMessage = {
@@ -20,14 +15,12 @@ type QuestionAnsweredMessage = {
     answer: string,
 }
 
-type Message = LogInMessage
-    | FocusEventMessage
+type Message = FocusEventMessage
     | QuestionAnsweredMessage
 
 export type {
     Message,
     FocusEventMessage,
-    LogInMessage,
     QuestionAnsweredMessage
 }
 
