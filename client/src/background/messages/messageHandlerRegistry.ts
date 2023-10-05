@@ -1,4 +1,4 @@
-import {Message, MessageType} from "../../../shared/messages.ts";
+import {Message, MessageType} from "../../shared/messages.ts";
 import MessageSender = chrome.runtime.MessageSender;
 
 type MessageTypeHandler = (message: Message, sender: MessageSender) => Promise<Message | void>

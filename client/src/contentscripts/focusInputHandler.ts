@@ -1,13 +1,14 @@
-import {sendMessageToBackgroundScript} from "../../shared/runtime";
-import {MessageType} from "../../shared/messages";
+import {sendMessageToBackgroundScript} from "../shared/runtime.ts";
+import {MessageType} from "../shared/messages.ts";
 
-const INPUTS = ["input"];
+const INPUTS = ["input", "textarea"];
 
 const isInputElement = (element: Element) => INPUTS.indexOf(element.tagName.toLowerCase()) !== -1
 
 const focusInputHandler = async (e: FocusEvent) => {
-    const activeElement = document.activeElement
-    if (!(e.relatedTarget && activeElement)) {
+    const activeElement = (e.target as Element);
+
+    if (!activeElement || !activeElement.tagName) {
         return;
     }
 

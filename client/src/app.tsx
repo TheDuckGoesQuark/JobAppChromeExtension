@@ -3,9 +3,6 @@ import preactLogo from './assets/preact.svg'
 import viteLogo from '/vite.svg'
 import './app.css'
 
-const onClick = () => {
-    chrome.runtime.sendMessage({message: "get_auth_token"})
-}
 
 export function App() {
     const [count, setCount] = useState(0)
@@ -24,9 +21,6 @@ export function App() {
             <div class="card">
                 <button onClick={() => setCount((count) => count + 1)}>
                     count is {count}
-                </button>
-                <button onClick={onClick}>
-                    Test chrome auth
                 </button>
                 <p>
                     Edit <code>src/app.tsx</code> and save to test HMR
