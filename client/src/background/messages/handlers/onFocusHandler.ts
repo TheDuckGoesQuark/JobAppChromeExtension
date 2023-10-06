@@ -5,13 +5,16 @@ import {getAuthToken, getQueryAnswer} from "../services.ts";
 const onFocusHandler: MessageTypeHandler = async (message) => {
     const onFocusMessage = message as FocusEventMessage
     const authToken = await getAuthToken();
-    const question = onFocusMessage.inputElement.textContent || "n/a";
 
+    const inputElement = (onFocusMessage.inputElement as HTMLInputElement)
+    const labels = inputElement.labels
+    const labelText = labels?.[0].textContent
+    const question = labelText ?? "What are your strengths?"
     const answer = await getQueryAnswer(question, authToken.token ?? "")
 
     const response: QuestionAnsweredMessage = {
         type: MessageType.questionAnswered,
-        question: onFocusMessage.inputElement.textContent ?? "n/a",
+        question,
         answer: answer.answer
     }
 

@@ -1,19 +1,20 @@
-from fastapi import APIRouter, Header
+from fastapi import APIRouter, Depends
+from typing import Annotated
 
 from .models import answers
-from .services.auth import get_google_user_id
+from .services.answers import get_answer_for_user
+from .dependencies import google_auth
+
+CommonsDep = Annotated[str, Depends(google_auth)]
 
 router = APIRouter(
     prefix="/answers",
     tags=["answers"],
-    responses={404: {"description": "Not found"}},
+    responses={404: {"description": "Not found"}}
 )
 
 
 @router.get("/", response_model=answers.GetQuestionAnswerResponse)
-async def read_root(
-        question: str = "missing",
-        authorization: str | None = Header(default=None),
-):
-    user_id = get_google_user_id(auth_token=authorization.lstrip("Bearer "))
-    return answers.GetQuestionAnswerResponse(question)
+async def read_root(question, google_user_id: CommonsDep):
+    answer = get_answer_for_user(question, google_user_id)
+    return answers.GetQuestionAnswerResponse(answer)
