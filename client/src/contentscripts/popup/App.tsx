@@ -1,23 +1,23 @@
 import useFocusedInputElement, {InputElement} from "./hooks/useFocusedInputElement.ts";
 import {useState} from "preact/hooks";
-import {useEffect} from "preact/compat";
-import {Container, ContainerProps, MantineProvider, Text} from "@mantine/core";
+import {FC, useEffect} from "preact/compat";
+import {Container, ContainerProps, Text} from "@mantine/core";
+import '@mantine/core/styles.css';
 
 
 const useContainerProps = (focusedElement: InputElement | undefined): ContainerProps => {
     const rect = focusedElement?.getBoundingClientRect()
 
     return {
-        style: {
-            position: "absolute",
-            top: (rect?.top ?? 0) - (rect?.height ?? 0),
-            left: rect?.left,
-            zIndex: 999,
-        },
+        pos: "absolute",
+        left: rect?.left,
+        top: (rect?.bottom ?? 0) + 25,
+        bg: "white",
+        style: {zIndex: 999}
     }
 }
 
-const App = () => {
+const App: FC = () => {
     const [showPopup, setShowPopup] = useState(false);
     const {element: focusedElement, ref} = useFocusedInputElement();
     const containerProps = useContainerProps(focusedElement)
@@ -35,13 +35,11 @@ const App = () => {
         setShowPopup(true);
     }, [focusedElement])
 
-    if (!(focusedElement && showPopup)) return null;
-    else return <MantineProvider>
-        <Container {...containerProps} ref={ref}>
-            <Text>hello! Click <a onClick={() => setShowPopup(false)}>here</a> to close this
-            </Text>
-        </Container>
-    </MantineProvider>
+    if (!(focusedElement && showPopup)) return <></>;
+    else return <Container {...containerProps} ref={ref}>
+        <Text>hello! Click <a onClick={() => setShowPopup(false)}>here</a> to close this
+        </Text>
+    </Container>
 }
 
 export default App;

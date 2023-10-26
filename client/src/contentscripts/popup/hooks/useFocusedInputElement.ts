@@ -1,5 +1,5 @@
 import {useEffect} from "preact/compat";
-import createFocusInputHandler from "./createFocusInputHandler.tsx";
+import createFocusInputHandler from "./createFocusInputHandler.ts";
 import {useState} from "preact/hooks";
 import {useClickOutside} from "@mantine/hooks";
 
