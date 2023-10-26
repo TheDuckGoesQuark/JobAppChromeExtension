@@ -6,24 +6,21 @@ import {Container, ContainerProps, MantineProvider, Text} from "@mantine/core";
 
 const useContainerProps = (focusedElement: InputElement | undefined): ContainerProps => {
     const rect = focusedElement?.getBoundingClientRect()
-    console.log({rect})
+
     return {
         style: {
             position: "absolute",
-            bottom: rect?.top,
+            top: (rect?.top ?? 0) - (rect?.height ?? 0),
             left: rect?.left,
+            zIndex: 999,
         },
-        w: "20rem",
-        h: "50rem",
     }
 }
 
 const App = () => {
     const [showPopup, setShowPopup] = useState(false);
-    const focusedElement = useFocusedInputElement();
+    const {element: focusedElement, ref} = useFocusedInputElement();
     const containerProps = useContainerProps(focusedElement)
-
-    console.log({focusedElement})
 
     // TODO render "submit question", fire the below to populate the field
     // const res = await sendMessageToBackgroundScript({type: MessageType.focusEvent, inputElement: activeElement})
@@ -40,7 +37,7 @@ const App = () => {
 
     if (!(focusedElement && showPopup)) return null;
     else return <MantineProvider>
-        <Container {...containerProps}>
+        <Container {...containerProps} ref={ref}>
             <Text>hello! Click <a onClick={() => setShowPopup(false)}>here</a> to close this
             </Text>
         </Container>
