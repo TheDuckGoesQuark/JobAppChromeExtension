@@ -1,12 +1,12 @@
 enum MessageType {
     unknown,
-    focusEvent,
+    askQuestion,
     questionAnswered,
 }
 
-type FocusEventMessage = {
-    type: MessageType.focusEvent
-    inputElement: Element
+type AskQuestionMessage = {
+    type: MessageType.askQuestion
+    question: string
 }
 
 type QuestionAnsweredMessage = {
@@ -15,12 +15,12 @@ type QuestionAnsweredMessage = {
     answer: string,
 }
 
-type Message = FocusEventMessage
+type Message = AskQuestionMessage
     | QuestionAnsweredMessage
 
 export type {
     Message,
-    FocusEventMessage,
+    AskQuestionMessage,
     QuestionAnsweredMessage
 }
 
